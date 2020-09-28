@@ -23,9 +23,9 @@ namespace MyWebApp.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseMySql("Server=127.0.0.1;port=3306;Database=configdb;uid=root;pwd=yang123");
-            optionsBuilder.UseNpgsql("Host=localhost;Username=postgres;Port=5432;Password=postgres");
+            //optionsBuilder.UseNpgsql("Host=localhost;Username=postgres;Port=5432;Password=postgres");
             //optionsBuilder.UseNpgsql("Host=172.17.0.2;Username=postgres;Port=5432;Password=postgres");
-            //optionsBuilder.UseSqlite("Data Source=Config.db");
+            optionsBuilder.UseSqlite("Data Source=Data.db");
             optionsBuilder.EnableDetailedErrors();
             base.OnConfiguring(optionsBuilder);
         }
@@ -36,7 +36,7 @@ namespace MyWebApp.Models
             builder.Entity<User>().HasKey(m => m.ID);
             builder.Entity<HealthData>().HasKey(m => m.ProjectID);
             base.OnModelCreating(builder);
-            
+
         }
     }
 }
