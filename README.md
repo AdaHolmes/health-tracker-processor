@@ -1,5 +1,5 @@
-# Health Tracker Processor
-## My first web app
+# A&E Tech
+## Health Tracker Processor
 
 This is an ASP.NET core web app, back-end of Health Tracker.
 
@@ -7,19 +7,19 @@ Health Tracker is my small idea, aim to track daily energy consumption, energy i
 
 The preliminary design is back-end will run in a container (microservice) in Azure, and database (PostgreSQL) is run in another container in Azure (or maybe use Azure PostgreSQL).
 
-## build the back-end: 
+## Build the back-end: 
 
 ```bash
 docker build -t health-tracker-processor:latest .
 ```
 
-## set up the  latest PostgreSQL container: 
+## Set up the  latest PostgreSQL container: 
 
 ```bash
 docker pull postgres:latest
 ```
 
-## launch PostgreSQL: 
+## Launch PostgreSQL: 
 
 ```bash
 docker run -p 5432:5432/tcp --hostname hardcore-eric --name my-web-pgsql --env POSTGRES_PASSWORD=postgres postgres
