@@ -1,7 +1,7 @@
 name: .NET Core
 
 on:
-  pull_request:
+  push:
     branches: [master]
 
 jobs:
@@ -20,3 +20,12 @@ jobs:
         run: dotnet build --configuration Release --no-restore
       - name: Test
         run: dotnet test --no-restore --verbosity normal
+
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ericyang.azurecr.io
+          username: ${{ secrets.ACR_USER }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - run: |
+          docker build . -t ericyang.azurecr.io/health-tracker-processor:${{ github.sha }}
+          docker push ericyang.azurecr.io/health-tracker-processor:${{ github.sha }}
