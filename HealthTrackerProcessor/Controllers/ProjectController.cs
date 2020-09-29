@@ -181,7 +181,7 @@ namespace HealthTrackerProcessor.Controllers
         [HttpPost("UpdateProject")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<JsonResult> UpdateUserProject([FromHeader] ProjectInput project)
+        public async Task<JsonResult> UpdateUserProject([FromBody] ProjectInput project)
         {
             string sErr = "";
             JsonResult response = null;
@@ -243,7 +243,7 @@ namespace HealthTrackerProcessor.Controllers
         [HttpPost("DeleteProject")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<JsonResult> DeleteUserProject([FromHeader] ProjectInput project)
+        public async Task<JsonResult> DeleteUserProject([FromBody] ProjectInput project)
         {
             string sErr = "";
             JsonResult response = null;
@@ -307,7 +307,7 @@ namespace HealthTrackerProcessor.Controllers
             public string? Description { get; set; }
             public ProjectType ProjectType { get; set; }
             public string UpdatedName { get; set; }
-            public string UpdateDescription { get; set; }
+            public string? UpdateDescription { get; set; }
             public ProjectType UpdateProjectType { get; set; }
         }
     }

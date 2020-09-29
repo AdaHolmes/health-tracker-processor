@@ -31,8 +31,8 @@ namespace HealthTrackerProcessor.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Project>().HasKey(m => m.Name);
-            builder.Entity<User>().HasKey(m => m.Username);
+            builder.Entity<Project>().HasKey(m => m.ID);
+            builder.Entity<User>().HasKey(m => m.ID);
             builder.Entity<HealthData>().HasKey(m => m.UTCTIme);
             base.OnModelCreating(builder);
 
