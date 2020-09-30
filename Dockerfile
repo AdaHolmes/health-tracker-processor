@@ -13,6 +13,6 @@ WORKDIR /out
 
 ENTRYPOINT ["dotnet", "HealthTrackerProcessor.dll"]
 
-ENV ASPNETCORE_URLS=http://0.0.0.0:80
+ENV ASPNETCORE_URLS=https://0.0.0.0:443
 
-EXPOSE 80
+EXPOSE 443
