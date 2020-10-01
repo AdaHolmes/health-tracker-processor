@@ -211,6 +211,7 @@ namespace HealthTrackerProcessor.Repositories
                     goto Get_Out;
                 }
                 project.ifDeleted = true;
+                project.Name += "_Deleted";
                 _context.Porjects.Update(project);
                 _context.SaveChanges();
             }

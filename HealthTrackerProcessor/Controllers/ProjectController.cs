@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using static HealthTrackerProcessor.Enum.HealthTrackerProcessorEnum;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace HealthTrackerProcessor.Controllers
 {
@@ -203,6 +204,17 @@ namespace HealthTrackerProcessor.Controllers
                     allProjects = _projectRepository.GetNonDeletedByUserID(userID);
                 });
                 var findProject = allProjects.FirstOrDefault(x => x.Name == project.Name);
+                if(findProject==null)
+                {
+                    sErr += $"There is no project named as {project.Name}";
+                    goto Get_Out;
+                }
+                var conflictPoroject = allProjects.FirstOrDefault(x => x.Name == project.UpdatedName);
+                if(findProject!=null)
+                {
+                    sErr += "Name is already in use, please use another naem!";
+                    goto Get_Out;
+                }
                 findProject.Name = project.UpdatedName;
                 findProject.Description = project.UpdateDescription;
                 findProject.ProjectType = project.UpdateProjectType;
@@ -265,7 +277,11 @@ namespace HealthTrackerProcessor.Controllers
                     allProjects = _projectRepository.GetNonDeletedByUserID(userID);
                 });
                 var findProject = allProjects.FirstOrDefault(x => x.Name == project.Name);
-
+                if(findProject==null)
+                {
+                    sErr += $"Cannot find project named as {project.Name}";
+                    goto Get_Out;
+                }
                 await Task.Run(() =>
                 {
                     sErr = _projectRepository.Delete(findProject);

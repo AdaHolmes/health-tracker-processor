@@ -34,7 +34,6 @@ namespace HealthTrackerProcessor.Controllers
             User user = null;
             try
             {
-                Project existProject = null;
                 if (String.IsNullOrEmpty(input.Username))
                 {
                     sErr = "User name cannot be empty!";
@@ -46,7 +45,7 @@ namespace HealthTrackerProcessor.Controllers
                 });
                 if (user != null)
                 {
-                    sErr = "Username cannot be null!";
+                    sErr = "Username cannot be duplicated!";
                     goto Get_Out;
                 }
                 else
@@ -93,8 +92,6 @@ namespace HealthTrackerProcessor.Controllers
 
             else
             {
-                sErr = "Create Model Success!";
-                //_logger.LogInformation(sErr);
                 response = Json(new AjaxResponse
                 {
                     Succeed = true,
